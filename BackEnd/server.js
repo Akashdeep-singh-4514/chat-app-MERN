@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 5000
 const connectToMongoDB = require("./db/connectMongoDB.js")
 
 
-// const __dirname = path.resolve()
+
 
 // get request at port
 app.get("/", (req, res) => {
@@ -30,11 +30,12 @@ app.use("/api/users", userRoutes)
 
 
 
-// app.use(express.static(path.join(__dirname, "/frontend/chatapp/dist")));
+const _dirname = path.resolve("/frontend/chatapp/dist")
+app.use(express.static(_dirname));
 
-// app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "frontend/chatapp", "dist", "index.html"));
-// });
+app.get("*", (req, res) => {
+    res.sendFile(path.join("frontend/chatapp", "/dist", "index.html"));
+});
 
 
 // listening at port at the last
