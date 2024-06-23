@@ -30,13 +30,12 @@ app.use("/api/users", userRoutes)
 
 
 
-const _dirname = path.resolve("/frontend/chatapp/dist")
-app.use(express.static(_dirname));
+var distDir = path.resolve(__dirname, "../frontend/chatapp/dist");
+app.use(express.static(distDir));
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join("frontend/chatapp", "/dist", "index.html"));
+app.get("*", function (req, res) {
+    res.sendFile(path.join(distDir, "index.html"));
 });
-
 
 // listening at port at the last
 server.listen(PORT, () => {
