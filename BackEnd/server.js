@@ -6,7 +6,7 @@ const messageRoutes = require("./routes/message.routes.js")
 const userRoutes = require("./routes/user.routes.js")
 
 const { server, app } = require("./socket/socket.js")
-
+// require("../FrontEnd/ChatApp/dist/index.html")
 
 // these three lines are to fetch environment variable form .env 
 // package dotenv shoul be installed
@@ -33,6 +33,7 @@ app.use("/api/users", userRoutes)
 var distDir = path.resolve(__dirname, "../frontend/chatapp/dist");
 app.use(express.static(distDir));
 
+// Serve index.html for all other routes
 app.get("*", function (req, res) {
     res.sendFile(path.join(distDir, "index.html"));
 });
