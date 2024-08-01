@@ -4,8 +4,8 @@
   "description": "",
   "main": "sever.js",
   "scripts": {
-    "server": "nodemon backend/server.js",
-		"start": "node backend/server.js",
+    "server": "nodemon BackEnd/server.js",
+		"start": "node BackEnd/server.js",
 		"build": "npm install"
   },
   "author": "",
