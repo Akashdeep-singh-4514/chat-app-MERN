@@ -28,16 +28,17 @@ app.use("/api/auth", authRoutes)
 app.use("/api/messages", messageRoutes)
 app.use("/api/users", userRoutes)
 
+// Serve static files from the 'dist' directory
+// require("../FrontEnd/ChatApp/dist/index.html")
+app.use(express.static(path.resolve("../FrontEnd/ChatApp/dist")));
 
+// Define your API routes here
+// Example: app.get('/api', (req, res) => { res.send('API route'); });
 
-var distDir = path.resolve(__dirname, "../frontend/chatapp/dist");
-app.use(express.static(distDir));
-
-// Serve index.html for all other routes
-app.get("*", function (req, res) {
-    res.sendFile(path.join(distDir, "index.html"));
+// Fallback route to serve the index.html file
+app.get('*', (req, res) => {
+    return res.sendFile("../frontend/chatapp/dist/index.html");
 });
-
 // listening at port at the last
 server.listen(PORT, () => {
     connectToMongoDB();
