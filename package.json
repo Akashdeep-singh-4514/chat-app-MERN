@@ -6,7 +6,7 @@
   "scripts": {
     "server": "nodemon backend/server.js",
 		"start": "node backend/server.js",
-		"build": "npm install && npm install --prefix frontend/chatapp && npm run build --prefix frontend/chatapp"
+		"build": "npm install "
   },
   "author": "",
   "license": "ISC",
