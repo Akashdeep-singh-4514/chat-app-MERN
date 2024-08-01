@@ -7,7 +7,11 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
+<<<<<<< HEAD
         origin: ["https://chat-app-mern-frontend-10mq.onrender.com/"],
+=======
+        origin: ["http://localhost:3000"],
+>>>>>>> 8ace9dc (revisting code)
         methods: ["GET", "POST"],
     },
 });

@@ -1,5 +1,6 @@
 const express = require("express")
 const path = require("path")
+const cors = require("cors");
 
 const authRoutes = require("./routes/auth.routes.js")
 const messageRoutes = require("./routes/message.routes.js")
@@ -28,20 +29,17 @@ app.use("/api/auth", authRoutes)
 app.use("/api/messages", messageRoutes)
 app.use("/api/users", userRoutes)
 
-// const corsOptions = {
-//   origin: 'https://chat-app-mern-frontend-10mq.onrender.com', // Replace with your frontend's origin
-//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//   credentials: true // Allow credentials (cookies, authorization headers)
-// };
 
-// app.use(cors(corsOptions));
 
-// app.use(express.static(path.resolve("../FrontEnd/ChatApp/dist")));
+var distDir = path.resolve(__dirname, "../frontend/chatapp/dist");
+app.use(express.static(distDir));
 
-// app.get('*', (req, res) => {
-//     return res.sendFile("../frontend/chatapp/dist/index.html");
-// });
+// Serve index.html for all other routes
+app.get("*", function (req, res) {
+    res.sendFile(path.join(distDir, "index.html"));
+});
 
+// listening at port at the last
 server.listen(PORT, () => {
     connectToMongoDB();
     console.log("server at", PORT);

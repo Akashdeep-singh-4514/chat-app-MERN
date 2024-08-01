@@ -3,6 +3,7 @@ import { useAuthContext } from "../contexts/AuthContext"
 import toast from "react-hot-toast"
 
 
+
 function useLogin() {
   const [loading, setloading] = useState(false)
   const { setAuthUser } = useAuthContext()
@@ -12,7 +13,11 @@ function useLogin() {
     if (!success) return;
     setloading(true)
     try {
+<<<<<<< HEAD
       await fetch("https://chat-app-mern-d00k.onrender.com/api/auth/login", {
+=======
+      await fetch(`/api/auth/login`, {
+>>>>>>> 8ace9dc (revisting code)
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userName, password }),

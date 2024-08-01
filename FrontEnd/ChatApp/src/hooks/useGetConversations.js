@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-
 const useGetConversations = () => {
   const [loading, setloading] = useState(false);
   const [conversations, setConversations] = useState([]);
@@ -11,7 +10,11 @@ const useGetConversations = () => {
       setloading(true);
       try {
 
+<<<<<<< HEAD
         await fetch("https://chat-app-mern-d00k.onrender.com/api/users", {
+=======
+        await fetch(`/api/users`, {
+>>>>>>> 8ace9dc (revisting code)
           method: "GET"
         }).then(res => res.json()).then(data => {
           setConversations(data)

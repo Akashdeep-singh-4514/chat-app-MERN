@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { useAuthContext } from '../contexts/AuthContext'
 import toast from "react-hot-toast";
+
+
 function useLogout() {
     const [loading, setloading] = useState(false)
     const { setAuthUser } = useAuthContext()
@@ -9,7 +11,11 @@ function useLogout() {
     const logout = async () => {
         setloading(true);
         try {
+<<<<<<< HEAD
             await fetch("https://chat-app-mern-d00k.onrender.com/api/auth/logout", {
+=======
+            await fetch(`/api/auth/logout`, {
+>>>>>>> 8ace9dc (revisting code)
                 method: "POST",
 
             }).then(res => res.json()).then(data => {
