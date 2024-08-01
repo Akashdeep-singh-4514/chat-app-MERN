@@ -29,11 +29,11 @@ app.use("/api/messages", messageRoutes)
 app.use("/api/users", userRoutes)
 
 
-// app.use(express.static(path.resolve("../FrontEnd/ChatApp/dist")));
+app.use(express.static(path.resolve("../FrontEnd/ChatApp/dist")));
 
-// app.get('*', (req, res) => {
-//     return res.sendFile("../frontend/chatapp/dist/index.html");
-// });
+app.get('*', (req, res) => {
+    return res.sendFile("../frontend/chatapp/dist/index.html");
+});
 
 server.listen(PORT, () => {
     connectToMongoDB();
