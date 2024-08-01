@@ -5,8 +5,8 @@
   "main": "sever.js",
   "scripts": {
     "server": "nodemon BackEnd/server.js",
-		"start": "node BackEnd/server.js",
-		"build": "npm install"
+    "start": "node BackEnd/server.js",
+    "build": "npm install && npm install --prefix FrontEnd/ChatApp && npm run build --prefix FrontEnd/ChatApp"
   },
   "author": "",
   "license": "ISC",
