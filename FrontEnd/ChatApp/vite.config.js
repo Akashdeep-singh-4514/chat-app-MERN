@@ -9,7 +9,7 @@ export default defineConfig({
     ,
     proxy: {
       "/api": {
-        target: "https://chat-app-mern-d00k.onrender.com"
+        target: "http://localhost:5000"
       }
     }
 
