@@ -19,8 +19,9 @@ const useSignup = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ fullName, userName, password, confirmPassword, gender }),
             }).then(res => {
-                res.json();
                 console.log(res);
+                res.json();
+
             }).then(data => {
                 if (data.error) {
                     toast.error(data.error)
