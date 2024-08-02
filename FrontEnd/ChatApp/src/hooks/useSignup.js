@@ -24,14 +24,12 @@ const useSignup = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ fullName, userName, password, confirmPassword, gender }),
             });
+            console.log(response);
 
             // Parse the response as JSON
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+            const data = await response.json();
+            console.log(data);
 
-            const text = await response.text();
-            const data = text ? JSON.parse(text) : {};
 
             // Check for errors in the response data
             if (data.error) {
