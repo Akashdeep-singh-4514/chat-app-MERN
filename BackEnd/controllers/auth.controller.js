@@ -29,8 +29,6 @@ const signup = async (req, res) => {
         const girlProfilePic = `https://avatar.iran.liara.run/public/girl?userName=${userName}`;
 
 
-
-
         const newUser = new User({
             fullName,
             userName,
@@ -47,7 +45,7 @@ const signup = async (req, res) => {
             res.status(201).json({
                 _id: newUser._id,
                 fullName: newUser.fullName,
-                username: newUser.username,
+                userName: newUser.userName,
                 profilePic: newUser.profilePic,
             });
         } else {
