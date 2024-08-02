@@ -8,35 +8,44 @@ const useSignup = () => {
     const { setAuthUser } = useAuthContext();
 
     const signup = async ({ fullName, userName, password, confirmPassword, gender }) => {
-        const success = handleInputErrors({ fullName, userName, password, confirmPassword, gender });
-        if (!success) return;
+        // Validate input fields
+        const isValid = handleInputErrors({ fullName, userName, password, confirmPassword, gender });
+        if (!isValid) return;
 
-        //test
+        // Debugging message
         console.log("hello front end");
 
         setLoading(true);
-        try {
-            await fetch(`/api/auth/signup`, {
 
+        try {
+            // Send POST request to signup API endpoint
+            const response = await fetch(`/api/auth/signup`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ fullName, userName, password, confirmPassword, gender }),
-            }).then(res => res.json()).then(data => {
-                if (data.error) {
-                    toast.error(data.error)
-                } else {
-                    localStorage.setItem("chat-user", JSON.stringify(data));
-                    setAuthUser(data);
-                }
-            })
+            });
 
+            // Parse the response as JSON
+            const data = await response.json();
+
+            // Check for errors in the response data
+            if (data.error) {
+                toast.error(data.error);
+            } else {
+                // Store user data in local storage and update auth user state
+                localStorage.setItem("chat-user", JSON.stringify(data));
+                setAuthUser(data);
+            }
         } catch (error) {
-            console.log(error);
+            // Handle network or other unexpected errors
+            console.error(error);
             toast.error(error.message);
         } finally {
+            // Reset loading state
             setLoading(false);
         }
     };
+
 
     return { loading, signup };
 };
