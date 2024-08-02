@@ -4,11 +4,7 @@ const User = require("../models/user.model.js");
 const signup = async (req, res) => {
     // test 1
     // return res.status(400).json({ hello: "hello backend" })
-    return res.status(400).json({
-        "_id": "66ac6dc57fe0a455cf7fa007",
-        "fullName": "jean summers",
-        "profilePic": "https://avatar.iran.liara.run/public/boy?userName=phoenix"
-    })
+
     try {
         const { fullName, userName, password, confirmPassword, gender } = req.body;
 
