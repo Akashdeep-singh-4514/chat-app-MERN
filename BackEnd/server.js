@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5000
 const connectToMongoDB = require("./db/connectMongoDB.js")
 
 
-
+app.use(cors())
 
 // get request at port
 app.get("/", (req, res) => {
