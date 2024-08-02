@@ -50,7 +50,7 @@ const useSignup = () => {
             setLoading(false);
         }
     };
-    z
+
 
     return { loading, signup };
 };
