@@ -59,6 +59,7 @@ const useSignup = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ fullName, userName, password, confirmPassword, gender }),
             });
+            console.log(response);
 
             // Check if the response is OK (status in the range 200-299)
             if (!response.ok) {
