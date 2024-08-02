@@ -11,6 +11,9 @@ const useSignup = () => {
         const success = handleInputErrors({ fullName, userName, password, confirmPassword, gender });
         if (!success) return;
 
+        //test
+        console.log("hello front end");
+
         setLoading(true);
         try {
             await fetch(`/api/auth/signup`, {
@@ -19,7 +22,7 @@ const useSignup = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ fullName, userName, password, confirmPassword, gender }),
             }).then(res => {
-                console.log(res);
+                // console.log(res);
                 res.json();
 
             }).then(data => {
@@ -28,8 +31,6 @@ const useSignup = () => {
                 } else {
                     localStorage.setItem("chat-user", JSON.stringify(data));
                     setAuthUser(data);
-
-                    console.log(data);
                 }
             })
 
