@@ -18,33 +18,26 @@ const useSignup = () => {
         setLoading(true);
 
         try {
-            // Send POST request to signup API endpoint
-            const response = await fetch(`/api/auth/signup`, {
+            await fetch(`/api/auth/signup`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ fullName, userName, password, confirmPassword, gender }),
-            });
-            console.log(response);
+            }).then(res => res.json()).then(data => {
+                console.log(data);
+                if (data.error) {
+                    toast.error(data.error);
+                } else {
+                    localStorage.setItem("chat-user", JSON.stringify(data));
+                    setAuthUser(data);
+                }
+            })
 
-            // Parse the response as JSON
-            const data = await response.json();
-            console.log(data);
 
-
-            // Check for errors in the response data
-            if (data.error) {
-                toast.error(data.error);
-            } else {
-                // Store user data in local storage and update auth user state
-                localStorage.setItem("chat-user", JSON.stringify(data));
-                setAuthUser(data);
-            }
         } catch (error) {
-            // Handle network or other unexpected errors
             console.error(error);
             toast.error(error.message);
         } finally {
-            // Reset loading state
+
             setLoading(false);
         }
     };
