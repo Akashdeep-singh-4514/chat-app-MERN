@@ -26,7 +26,12 @@ const useSignup = () => {
             });
 
             // Parse the response as JSON
-            const data = await response.json();
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const text = await response.text();
+            const data = text ? JSON.parse(text) : {};
 
             // Check for errors in the response data
             if (data.error) {
@@ -45,7 +50,7 @@ const useSignup = () => {
             setLoading(false);
         }
     };
-
+    z
 
     return { loading, signup };
 };
