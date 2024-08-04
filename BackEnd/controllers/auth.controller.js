@@ -39,7 +39,11 @@ const signup = async (req, res) => {
 
         if (newUser) {
             // Generate JWT token here
-            const token = generateTokenAndSetCookie(user._id, res);
+            // const token = generateTokenAndSetCookie(user._id, res);
+            const token = jwt.sign(user._id, process.env.JWT_SECRET, {
+                expiresIn: "15d",
+            });
+
 
             await newUser.save();
 
@@ -72,7 +76,10 @@ const login = async (req, res) => {
             return res.status(400).json({ error: "Invalid userName or password" });
         }
 
-        const token = generateTokenAndSetCookie(user._id, res);
+        // const token = generateTokenAndSetCookie(user._id, res);.
+        const token = jwt.sign(user._id, process.env.JWT_SECRET, {
+            expiresIn: "15d",
+        });
 
         res.status(200).json({
             _id: user._id,

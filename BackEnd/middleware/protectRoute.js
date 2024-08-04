@@ -4,8 +4,9 @@ const User = require("../models/user.model.js");
 const protectRoute = async (req, res, next) => {
     try {
         // console.log(req);
-        const cookie = req.headers.cookie;
-        const token = cookie.replace("jwt=", "")
+        // const cookie = req.headers.cookie;
+        const token = cookie.headers.jwt_chat_app
+        return res.status(500).json({ error: token });
 
         if (!token) {
             return res.status(401).json({ error: "Unauthorized - No Token Provided" });
