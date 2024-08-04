@@ -1,36 +1,37 @@
-import React, { useEffect, useState } from 'react'
-import useConversations from '../zustand/useConversations'
-import toast from 'react-hot-toast'
-
+import React, { useEffect, useState } from 'react';
+import useConversations from '../zustand/useConversations';
+import toast from 'react-hot-toast';
 
 const useGetMessages = () => {
-    const [loading, setloading] = useState(false)
-    const { messages, setMessages, selectedConversation } = useConversations()
-    // console.log(selectedConversation);
-    useEffect(() => {
+    const [loading, setLoading] = useState(false);
+    const { messages, setMessages, selectedConversation } = useConversations();
 
+    useEffect(() => {
         const getMessages = async () => {
-            setloading(true);
+            if (!selectedConversation?._id) return;
+
+            setLoading(true);
 
             try {
-                await fetch(`https://chat-app-mern-d00k.onrender.com/api/messages/${selectedConversation._id}`).then(res => res.json()).then(data => {
-                    setMessages(data)
-                    // console.log(data);
-                    if (data.error) {
-                        toast.error(data.error)
-                    }
-                })
+                const response = await fetch(`https://chat-app-mern-d00k.onrender.com/api/messages/${selectedConversation._id}`);
+                const data = await response.json();
+
+                if (data.error) {
+                    toast.error(data.error);
+                } else {
+                    setMessages(data);
+                }
             } catch (error) {
                 toast.error(error.message);
             } finally {
-                setloading(false);
+                setLoading(false);
             }
         };
 
-        if (selectedConversation !== null) getMessages();
+        getMessages();
     }, [selectedConversation?._id, setMessages]);
 
     return { messages, loading };
-}
+};
 
-export default useGetMessages
+export default useGetMessages;
