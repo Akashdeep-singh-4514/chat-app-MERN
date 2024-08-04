@@ -14,12 +14,12 @@ const useGetConversations = () => {
         });
         console.log(response);
 
-        if (!response.ok) {
-          const errorText = await response.text();
-          //     console.error("Server error:", errorText);
-          toast.error("Server error: " + errorText);
-          return;
-        }
+        // if (!response.ok) {
+        //   const errorText = await response.text();
+        //   //     console.error("Server error:", errorText);
+        //   toast.error("Server error: " + errorText);
+        //   return;
+        // }
         const data = await response.json();
         console.log(data);
 
