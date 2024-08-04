@@ -1,6 +1,4 @@
 const bcrypt = require("bcryptjs")
-const jwt = require("jsonwebtoken")
-
 const generateTokenAndSetCookie = require("../utils/generateToken.js")
 const User = require("../models/user.model.js");
 const signup = async (req, res) => {
@@ -41,12 +39,7 @@ const signup = async (req, res) => {
 
         if (newUser) {
             // Generate JWT token here
-            // const token = generateTokenAndSetCookie(user._id, res);
-            const token = jwt.sign(user._id, process.env.JWT_SECRET, {
-                expiresIn: "15d",
-            });
-
-
+            generateTokenAndSetCookie(newUser._id, res);
             await newUser.save();
 
             res.status(201).json({
@@ -54,8 +47,6 @@ const signup = async (req, res) => {
                 fullName: newUser.fullName,
                 userName: newUser.userName,
                 profilePic: newUser.profilePic,
-                token: token
-
             });
         } else {
             res.status(400).json({ error: "Invalid user data" });
@@ -78,17 +69,13 @@ const login = async (req, res) => {
             return res.status(400).json({ error: "Invalid userName or password" });
         }
 
-        // const token = generateTokenAndSetCookie(user._id, res);.
-        const token = jwt.sign(user._id, process.env.JWT_SECRET, {
-            expiresIn: "15d",
-        });
+        generateTokenAndSetCookie(user._id, res);
 
         res.status(200).json({
             _id: user._id,
             fullName: user.fullName,
             userName: user.userName,
             profilePic: user.profilePic,
-            token: token
         });
     } catch (error) {
         console.log("Error in login controller", error.message);

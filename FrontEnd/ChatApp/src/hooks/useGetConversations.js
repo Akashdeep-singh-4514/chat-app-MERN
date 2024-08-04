@@ -5,15 +5,12 @@ const useGetConversations = () => {
   const [loading, setLoading] = useState(false);
   const [conversations, setConversations] = useState([]);
 
-
-
   useEffect(() => {
     const getConversations = async () => {
       setLoading(true);
       try {
         const response = await fetch(`https://chat-app-mern-d00k.onrender.com/api/users`, {
           method: "GET",
-          headers: { jwt_chat_app: authUser.token }
         });
         console.log(response);
 

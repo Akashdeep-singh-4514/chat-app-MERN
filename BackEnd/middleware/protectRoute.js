@@ -4,9 +4,8 @@ const User = require("../models/user.model.js");
 const protectRoute = async (req, res, next) => {
     try {
         // console.log(req);
-        // const cookie = req.headers.cookie;
-        const token = cookie.headers.jwt_chat_app
-        return res.status(500).json({ error: token });
+        const cookie = req.headers.cookie;
+        const token = cookie.replace("jwt=", "")
 
         if (!token) {
             return res.status(401).json({ error: "Unauthorized - No Token Provided" });
@@ -28,8 +27,8 @@ const protectRoute = async (req, res, next) => {
 
         next();
     } catch (error) {
-        // console.log("Error in protectRoute middleware: ", error.message);
-        res.status(500).json({ error: "internal server error" });
+        console.log("Error in protectRoute middleware: ", error.message);
+        res.status(500).json({ error: "Internal server error" });
     }
 };
 
