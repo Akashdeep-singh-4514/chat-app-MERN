@@ -42,7 +42,6 @@ const useSignup = () => {
                 toast.error(data.error);
             } else {
                 localStorage.setItem("chat-user", JSON.stringify(data));
-                localStorage.setItem("jwt_chat_app", JSON.stringify(data.token));
 
                 setAuthUser(data);
             }
