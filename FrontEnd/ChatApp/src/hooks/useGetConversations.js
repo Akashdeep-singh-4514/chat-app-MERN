@@ -12,6 +12,12 @@ const useGetConversations = () => {
         const response = await fetch(`https://chat-app-mern-d00k.onrender.com/api/users`, {
           method: "GET",
         });
+        if (!response.ok) {
+          const errorText = await response.text();
+          //     console.error("Server error:", errorText);
+          toast.error("Server error: " + errorText);
+          return;
+        }
         const data = await response.json();
 
         if (data.error) {
