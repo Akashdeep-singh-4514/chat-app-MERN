@@ -8,6 +8,8 @@ const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
         origin: ["https://chat-app-mern-frontend-10mq.onrender.com"],
+        // origin: ["http://localhost:3000"],
+
         methods: ["GET", "POST"],
     },
 });

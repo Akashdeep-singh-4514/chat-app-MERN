@@ -20,6 +20,8 @@ const useSignup = () => {
 
         try {
             const response = await fetch(`https://chat-app-mern-d00k.onrender.com/api/auth/signup`, {
+                // const response = await fetch(`http://localhost:5000/api/auth/signup`, {
+
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ fullName, userName, password, confirmPassword, gender }),
@@ -42,6 +44,7 @@ const useSignup = () => {
                 toast.error(data.error);
             } else {
                 localStorage.setItem("chat-user", JSON.stringify(data));
+                localStorage.setItem("jwt_chat_app", JSON.stringify(data.token));
 
                 setAuthUser(data);
             }

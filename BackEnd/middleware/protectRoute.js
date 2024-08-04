@@ -3,7 +3,11 @@ const User = require("../models/user.model.js");
 
 const protectRoute = async (req, res, next) => {
     try {
-        const token = req.cookies.jwt;
+        // console.log(req.headers);
+
+        const token = req.headers.jwt;
+
+
 
         if (!token) {
             return res.status(401).json({ error: "Unauthorized - No Token Provided" });
