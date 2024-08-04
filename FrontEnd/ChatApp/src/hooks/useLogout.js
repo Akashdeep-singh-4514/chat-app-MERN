@@ -11,7 +11,7 @@ function useLogout() {
     const logout = async () => {
         setloading(true);
         try {
-            await fetch(`/api/auth/logout`, {
+            await fetch(`https://chat-app-mern-d00k.onrender.com/api/auth/logout`, {
 
                 method: "POST",
 

@@ -13,7 +13,7 @@ const useGetMessages = () => {
             setloading(true);
 
             try {
-                await fetch(`/api/messages/${selectedConversation._id}`).then(res => res.json()).then(data => {
+                await fetch(`https://chat-app-mern-d00k.onrender.com/api/messages/${selectedConversation._id}`).then(res => res.json()).then(data => {
                     setMessages(data)
                     // console.log(data);
                     if (data.error) {

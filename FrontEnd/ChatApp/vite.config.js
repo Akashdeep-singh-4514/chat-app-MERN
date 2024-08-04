@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target: "https://chat-app-mern-d00k.onrender.com"
+        target: ""
       }
     }
 

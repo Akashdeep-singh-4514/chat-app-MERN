@@ -54,7 +54,7 @@ const useSignup = () => {
         setLoading(true);
 
         try {
-            const response = await fetch(`/api/auth/signup`, {
+            const response = await fetch(`https://chat-app-mern-d00k.onrender.com/api/auth/signup`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ fullName, userName, password, confirmPassword, gender }),

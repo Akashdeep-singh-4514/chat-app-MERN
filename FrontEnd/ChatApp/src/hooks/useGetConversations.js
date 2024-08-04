@@ -9,7 +9,7 @@ const useGetConversations = () => {
     const getConversations = async () => {
       setloading(true);
       try {
-        await fetch(`/api/users`, {
+        await fetch(`https://chat-app-mern-d00k.onrender.com/api/users`, {
           method: "GET"
         }).then(res => res.json()).then(data => {
           setConversations(data)
