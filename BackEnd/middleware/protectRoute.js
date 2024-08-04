@@ -1,17 +1,15 @@
-const jwt_module = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const User = require("../models/user.model.js");
 
 const protectRoute = async (req, res, next) => {
     try {
-        // console.log(req);
-        const cookie = req.headers.cookie;
-        const token = cookie.replace("jwt=", "")
+        const token = req.cookies.jwt;
 
         if (!token) {
             return res.status(401).json({ error: "Unauthorized - No Token Provided" });
         }
 
-        const decoded = jwt_module.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         if (!decoded) {
             return res.status(401).json({ error: "Unauthorized - Invalid Token" });
@@ -24,7 +22,6 @@ const protectRoute = async (req, res, next) => {
         }
 
         req.user = user;
-
         next();
     } catch (error) {
         console.log("Error in protectRoute middleware: ", error.message);

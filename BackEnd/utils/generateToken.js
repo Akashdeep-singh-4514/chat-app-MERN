@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
 const generateTokenAndSetCookie = (userId, res) => {
     const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
@@ -6,13 +6,10 @@ const generateTokenAndSetCookie = (userId, res) => {
     });
 
     res.cookie("jwt", token, {
-        //   15 days 24 hours 60 minutes 60 seconds 1000 milliseconds
-        maxAge: 15 * 24 * 60 * 60 * 1000, // MS
-        httpOnly: true, // prevent XSS attacks cross-site scripting attacks
-        sameSite: "strict", // CSRF attacks cross-site request forgery attacks
+        maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days in milliseconds
+        httpOnly: true, // Prevent XSS attacks
+        sameSite: "strict", // Prevent CSRF attacks
         secure: process.env.NODE_ENV !== "development",
-        // secure: process.env.NODE_ENV !== "production",
-
     });
 };
 

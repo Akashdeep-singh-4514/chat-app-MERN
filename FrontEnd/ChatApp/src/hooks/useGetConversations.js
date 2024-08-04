@@ -11,6 +11,7 @@ const useGetConversations = () => {
       try {
         const response = await fetch(`https://chat-app-mern-d00k.onrender.com/api/users`, {
           method: "GET",
+          credentials: 'include',
         });
         console.log(response);
 
